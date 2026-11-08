@@ -1,0 +1,15 @@
+# Copie para terraform.tfvars e ajuste
+aws_region    = "sa-east-1"
+project       = "gastos-casa"
+github_repo   = "seu-usuario/gastos-casa"
+github_branch = "main"
+admin_email   = "voce@exemplo.com"
+
+# Se a conta AWS já tiver o provedor OIDC do GitHub configurado, use false
+create_github_oidc_provider = true
+
+# Opcional: HTTPS com certificado do ACM (na mesma região)
+# certificate_arn = "arn:aws:acm:sa-east-1:123456789012:certificate/xxxx"
+
+# Economia: Fargate Spot
+# use_fargate_spot = true

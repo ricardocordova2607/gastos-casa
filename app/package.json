@@ -1,0 +1,21 @@
+{
+  "name": "gastos-casa",
+  "version": "1.0.0",
+  "description": "Controle de gastos domésticos",
+  "main": "src/server.js",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "migrate": "node src/migrate.js",
+    "check": "node --check src/server.js && node --check src/api.js && node --check src/auth.js && node --check src/db.js && node --check src/migrate.js && node --check public/app.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}

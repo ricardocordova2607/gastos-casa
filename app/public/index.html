@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gastos da Casa</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>" />
+</head>
+<body>
+  <!-- Login -->
+  <section id="login-view" class="login hidden">
+    <form id="login-form" class="card login-card">
+      <h1>🏠 Gastos da Casa</h1>
+      <label>E-mail <input type="email" name="email" required autocomplete="username" /></label>
+      <label>Senha <input type="password" name="password" required autocomplete="current-password" /></label>
+      <button type="submit" class="btn primary">Entrar</button>
+      <p id="login-error" class="error"></p>
+    </form>
+  </section>
+
+  <!-- App -->
+  <div id="app-view" class="hidden">
+    <header class="topbar">
+      <div class="brand">🏠 Gastos da Casa</div>
+      <div class="month-picker">
+        <button class="btn ghost" id="prev-month" aria-label="Mês anterior">‹</button>
+        <input type="month" id="month" />
+        <button class="btn ghost" id="next-month" aria-label="Próximo mês">›</button>
+      </div>
+      <div class="user">
+        <span id="user-name"></span>
+        <button class="btn ghost" id="logout">Sair</button>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <button data-tab="resumo" class="active">Resumo</button>
+      <button data-tab="lancamentos">Lançamentos</button>
+      <button data-tab="orcamentos">Orçamentos</button>
+      <button data-tab="categorias">Categorias</button>
+      <button data-tab="contas">Contas</button>
+      <button data-tab="config">Configurações</button>
+    </nav>
+
+    <main>
+      <section id="tab-resumo" class="tab"></section>
+      <section id="tab-lancamentos" class="tab hidden"></section>
+      <section id="tab-orcamentos" class="tab hidden"></section>
+      <section id="tab-categorias" class="tab hidden"></section>
+      <section id="tab-contas" class="tab hidden"></section>
+      <section id="tab-config" class="tab hidden"></section>
+    </main>
+
+    <button class="fab" id="fab" title="Novo lançamento">+</button>
+  </div>
+
+  <!-- Modal de lançamento -->
+  <dialog id="tx-dialog">
+    <form id="tx-form" method="dialog" class="tx-form">
+      <h2 id="tx-title">Novo lançamento</h2>
+      <div class="kind-toggle">
+        <label><input type="radio" name="kind" value="despesa" checked /> <span>Despesa</span></label>
+        <label><input type="radio" name="kind" value="receita" /> <span>Receita</span></label>
+      </div>
+      <label>Descrição <input name="description" required maxlength="200" /></label>
+      <div class="row">
+        <label>Valor (R$) <input name="amount" type="number" step="0.01" min="0.01" required /></label>
+        <label>Data <input name="date" type="date" required /></label>
+      </div>
+      <div class="row">
+        <label>Categoria <select name="category_id" required></select></label>
+        <label>Conta <select name="account_id"></select></label>
+      </div>
+      <div class="row">
+        <label id="installments-field">Parcelas <input name="installments" type="number" min="1" max="60" value="1" /></label>
+        <label class="check"><input name="paid" type="checkbox" checked /> Pago / recebido</label>
+      </div>
+      <label>Observações <textarea name="notes" rows="2" maxlength="1000"></textarea></label>
+      <p id="tx-error" class="error"></p>
+      <div class="actions">
+        <button type="button" class="btn danger hidden" id="tx-delete">Excluir</button>
+        <span class="spacer"></span>
+        <button type="button" class="btn" id="tx-cancel">Cancelar</button>
+        <button type="submit" class="btn primary">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
